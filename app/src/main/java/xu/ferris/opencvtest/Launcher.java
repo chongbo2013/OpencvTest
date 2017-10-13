@@ -26,11 +26,11 @@ public class Launcher extends AppCompatActivity {
         imageView = (RectImageView) findViewById(R.id.imageView);
         imageView2= (RectImageView) findViewById(R.id.imageView2);
         //9716  144x144
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher3);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         LauncherConfig.IconSize=Math.max(bitmap.getWidth(),bitmap.getHeight());
         imageView.setImageBitmap(bitmap);
         imageView.setRect(ThemeConfig.checkIconAlphaRect(bitmap));
-        Bitmap finalBitmap = ThemeConfig.getIconFromPackageName(this,BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher3));
+        Bitmap finalBitmap = ThemeConfig.getIconFromPackageName(this,BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
         imageView2.setImageBitmap(finalBitmap);
     }
     static Launcher launcher;

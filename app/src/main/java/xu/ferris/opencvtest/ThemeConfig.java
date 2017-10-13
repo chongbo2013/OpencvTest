@@ -1,5 +1,4 @@
 package xu.ferris.opencvtest;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,6 +9,8 @@ import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import xu.ferris.opencvtest.filter.GrayEffectFiter;
+import xu.ferris.opencvtest.filter.IconFiter;
 
 /**
  * 图标处理
@@ -26,6 +27,9 @@ public class ThemeConfig {
     private static final Canvas sCanvas = new Canvas();
     private static final Matrix mMatrix = new Matrix();
     private static final Paint mPaint = new Paint();
+
+
+    static IconFiter iconFiter=new GrayEffectFiter();
     static {
         sCanvas.setDrawFilter(new PaintFlagsDrawFilter(Paint.DITHER_FLAG,
                 Paint.FILTER_BITMAP_FLAG));
@@ -78,7 +82,11 @@ public class ThemeConfig {
         if (mDrawMatrix != null) {
             canvas.concat(mDrawMatrix);
         }
+        if(iconFiter!=null)
+        iconFiter.applyFiter(((BitmapDrawable)icon).getPaint());
         icon.draw(canvas);
+        if(iconFiter!=null)
+        iconFiter.resetFiter(((BitmapDrawable)icon).getPaint());
         canvas.restore();
         canvas.setBitmap(null);
         canvas.concat(null);
@@ -115,7 +123,11 @@ public class ThemeConfig {
         if (mDrawMatrix != null) {
             canvas.concat(mDrawMatrix);
         }
+        if(iconFiter!=null)
+            iconFiter.applyFiter(mPaint);
         canvas.drawBitmap(icon, 0, 0, mPaint);
+        if(iconFiter!=null)
+            iconFiter.applyFiter(mPaint);
         canvas.restore();
         canvas.setBitmap(null);
         canvas.concat(null);
