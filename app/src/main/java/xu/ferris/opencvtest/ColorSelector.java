@@ -6,16 +6,11 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSeekBar;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
+
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
 public class ColorSelector extends android.app.Dialog implements SeekBar.OnSeekBarChangeListener{
@@ -23,14 +18,14 @@ public class ColorSelector extends android.app.Dialog implements SeekBar.OnSeekB
     int color = Color.BLACK;
     Context context;
     View colorView;
-    View view, backView;//background
+    View view;
 
     OnColorSelectedListener onColorSelectedListener;
     AppCompatSeekBar red, green, blue;
 
 
     public ColorSelector(Context context,Integer color, OnColorSelectedListener onColorSelectedListener) {
-        super(context, android.R.style.Theme_Translucent);
+        super(context, android.R.style.Theme_Material_Light_Dialog);
         this.context = context;
         this.onColorSelectedListener = onColorSelectedListener;
         if(color != null)
@@ -54,18 +49,7 @@ public class ColorSelector extends android.app.Dialog implements SeekBar.OnSeekB
         setContentView(R.layout.color_selector);
 
         view = (LinearLayout)findViewById(R.id.contentSelector);
-        backView = (RelativeLayout)findViewById(R.id.rootSelector);
-        backView.setOnTouchListener(new OnTouchListener() {
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getX() < view.getLeft() || event.getX() >view.getRight()
-                        || event.getY() > view.getBottom() || event.getY() < view.getTop()) {
-                    dismiss();
-                }
-                return false;
-            }
-        });
 
         colorView = findViewById(R.id.viewColor);
         colorView.setBackgroundColor(color);
@@ -102,8 +86,6 @@ public class ColorSelector extends android.app.Dialog implements SeekBar.OnSeekB
     @Override
     public void show() {
         super.show();
-        view.startAnimation(AnimationUtils.loadAnimation(context, R.anim.dialog_main_show_amination));
-        backView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.dialog_root_show_amin));
     }
 
 
@@ -132,35 +114,6 @@ public class ColorSelector extends android.app.Dialog implements SeekBar.OnSeekB
         public void onColorSelected(int color);
     }
 
-    @Override
-    public void dismiss() {
-        Animation anim = AnimationUtils.loadAnimation(context, R.anim.dialog_main_hide_amination);
 
-        anim.setAnimationListener(new AnimationListener() {
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                view.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        ColorSelector.super.dismiss();
-                    }
-                });
-            }
-        });
-
-        Animation backAnim = AnimationUtils.loadAnimation(context, R.anim.dialog_root_hide_amin);
-
-        view.startAnimation(anim);
-        backView.startAnimation(backAnim);
-    }
 
 }
