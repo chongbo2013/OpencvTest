@@ -26,6 +26,8 @@ public class RectImageView extends ImageView {
     }
     Rect rect=new Rect();
     public void setRect(Rect rect) {
+        if(rect==null)
+            return;
         this.rect.set(rect);
         invalidate();
     }

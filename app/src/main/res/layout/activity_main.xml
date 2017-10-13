@@ -9,18 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="xu.ferris.opencvtest.MainActivity">
+    tools:context="xu.ferris.opencvtest.Launcher">
 
-
-
-    <xu.ferris.opencvtest.RectImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp"
-        android:id="@+id/imageView"
-        android:background="#454545"
-        android:scaleType="fitXY"/>
 
     <Button
         android:text="Button"
@@ -29,4 +19,28 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/button" />
+
+    <xu.ferris.opencvtest.RectImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:id="@+id/imageView"
+
+        android:background="#454545"
+        android:scaleType="fitXY"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_toStartOf="@+id/imageView2" />
+
+    <xu.ferris.opencvtest.RectImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61dp"
+        android:id="@+id/imageView2"
+        android:background="#454545"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginLeft="76dp"
+        android:layout_marginStart="76dp" />
 </RelativeLayout>
