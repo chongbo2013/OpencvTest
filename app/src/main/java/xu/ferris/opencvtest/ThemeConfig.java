@@ -33,6 +33,7 @@ public class ThemeConfig {
     static {
         sCanvas.setDrawFilter(new PaintFlagsDrawFilter(Paint.DITHER_FLAG,
                 Paint.FILTER_BITMAP_FLAG));
+        mPaint.setFilterBitmap(true);
     }
 
     public static Bitmap getIconFromPackageName(Context mContext, Bitmap bitmapAssets) {

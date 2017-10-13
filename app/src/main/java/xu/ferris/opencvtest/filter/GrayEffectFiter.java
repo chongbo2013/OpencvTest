@@ -1,5 +1,6 @@
 package xu.ferris.opencvtest.filter;
 
+import android.graphics.Color;
 import android.graphics.ColorMatrix;
 
 /**
@@ -8,9 +9,8 @@ import android.graphics.ColorMatrix;
  */
 
 public class GrayEffectFiter extends IconFiter {
-
     @Override
-    public void apply(ColorMatrix mColorMatrix) {
+    protected void apply(ColorMatrix mColorMatrix) {
         mColorMatrix.setSaturation(0);
     }
 }
